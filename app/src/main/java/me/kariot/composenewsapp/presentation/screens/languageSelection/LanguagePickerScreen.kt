@@ -10,12 +10,14 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import me.kariot.composenewsapp.data.models.languageSelection.Languages
+import me.kariot.composenewsapp.navigation.Screens
 import me.kariot.composenewsapp.presentation.ui.theme.*
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun LanguagePickerScreen() {
+fun LanguagePickerScreen(navController: NavController?) {
     val languages = listOf(
         Languages("E", colorAccent, "English"),
         Languages("മ", orange, "മലയാളം"),
@@ -42,15 +44,18 @@ fun LanguagePickerScreen() {
                 )
             }
             item {
-                LanguageListFooter()
+                LanguageListFooter {
+                    if (selectedItemIndex > -1) {
+                        navController?.navigate(Screens.DashScreen.route)
+                    }
+                }
             }
         }
-
     }
 }
 
 @Preview
 @Composable
 fun LanguagePickerScreenPreview() {
-    LanguagePickerScreen()
+    LanguagePickerScreen(rememberNavController())
 }

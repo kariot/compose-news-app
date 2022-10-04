@@ -13,11 +13,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun LanguageListFooter() {
+fun LanguageListFooter(onClick: () -> Unit) {
     Button(
-        onClick = {
-
-        },
+        onClick = onClick,
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp)
@@ -33,5 +31,7 @@ fun LanguageListFooter() {
 @Preview
 @Composable
 fun LanguageListFooterPreview() {
-    LanguageListFooter()
+    LanguageListFooter {
+
+    }
 }
