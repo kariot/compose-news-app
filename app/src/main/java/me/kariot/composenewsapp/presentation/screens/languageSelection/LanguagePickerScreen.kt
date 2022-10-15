@@ -1,6 +1,5 @@
 package me.kariot.composenewsapp.presentation.screens.languageSelection
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -15,15 +14,16 @@ import androidx.navigation.compose.rememberNavController
 import me.kariot.composenewsapp.data.models.languageSelection.Languages
 import me.kariot.composenewsapp.navigation.Screens
 import me.kariot.composenewsapp.presentation.ui.theme.*
+import me.kariot.composenewsapp.utils.SharedPref
 
 @Composable
 fun LanguagePickerScreen(navController: NavController?) {
     val languages = listOf(
-        Languages("E", colorAccent, "English"),
-        Languages("മ", orange, "മലയാളം"),
-        Languages("த", purple, "தமிழ்"),
-        Languages("ಕ", darkBlue, "ಕನ್ನಡ"),
-        Languages("ह", darkGray, "हिंदी")
+        Languages("E", colorAccent, "English", "en"),
+        Languages("മ", orange, "മലയാളം", "ml"),
+        Languages("த", purple, "தமிழ்", "tl"),
+        Languages("ಕ", darkBlue, "ಕನ್ನಡ", "kn"),
+        Languages("ह", darkGray, "हिंदी", "hn")
     )
     var selectedItemIndex by remember {
         mutableStateOf(-1)
@@ -46,6 +46,7 @@ fun LanguagePickerScreen(navController: NavController?) {
             item {
                 LanguageListFooter {
                     if (selectedItemIndex > -1) {
+                        SharedPref.setLanguage(languages[selectedItemIndex].id)
                         navController?.navigate(Screens.DashScreen.route)
                     }
                 }
