@@ -52,5 +52,5 @@ fun LanguageCard(
 @Preview
 @Composable
 fun LanguageCardPreview() {
-    LanguageCard(0, Languages("E", Color.Magenta, "English"), { _ -> }, false)
+    LanguageCard(0, Languages("E", Color.Magenta, "English","en"), { _ -> }, false)
 }

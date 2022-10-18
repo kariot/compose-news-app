@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ComposeNewsAppTheme {
                 navHostController = rememberNavController()
-                SetupNavGraph(navController = rememberNavController())
+                SetupNavGraph(navController = navHostController)
 
                 if (SharedPref.isLanguagePicked()) {
                     navHostController.navigate(Screens.DashScreen.route)
