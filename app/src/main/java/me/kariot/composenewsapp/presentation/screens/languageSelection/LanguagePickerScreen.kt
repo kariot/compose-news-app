@@ -4,8 +4,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -13,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import me.kariot.composenewsapp.data.models.languageSelection.Languages
 import me.kariot.composenewsapp.navigation.Screens
+import me.kariot.composenewsapp.presentation.screens.common.AppToolbar
 import me.kariot.composenewsapp.presentation.ui.theme.*
 import me.kariot.composenewsapp.utils.SharedPref
 
@@ -30,7 +29,7 @@ fun LanguagePickerScreen(navController: NavController?) {
     }
     val onItemClick = { index: Int -> selectedItemIndex = index }
 
-    Scaffold(topBar = { TopAppBar(title = { Text("Pick a language") }) }) {
+    Scaffold(topBar = { AppToolbar(title = "Pick a language") }) {
         LazyColumn(modifier = Modifier.padding(it)) {
             item {
                 LanguageListHeader()

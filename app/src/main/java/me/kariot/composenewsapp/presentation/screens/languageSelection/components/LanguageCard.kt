@@ -13,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import me.kariot.composenewsapp.data.models.languageSelection.Languages
+import me.kariot.composenewsapp.presentation.screens.languageSelection.components.LanguageThumbnail
 
 @Composable
 fun LanguageCard(

@@ -7,18 +7,18 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavController
 import me.kariot.composenewsapp.data.NewsSource
 import me.kariot.composenewsapp.data.source.EnglishDataSources
+import me.kariot.composenewsapp.data.source.MalayalamDataSources
+import me.kariot.composenewsapp.navigation.Screens
+import me.kariot.composenewsapp.presentation.screens.common.AppToolbar
 import me.kariot.composenewsapp.presentation.screens.dashboard.components.NewsProviderCard
 import me.kariot.composenewsapp.utils.SharedPref
 import me.kariot.quicknews.api.HindiDataSources
 import me.kariot.quicknews.api.KannadaDataSources
-import me.kariot.composenewsapp.data.source.MalayalamDataSources
 import me.kariot.quicknews.api.TamilDataSources
 
 @Composable
@@ -26,9 +26,7 @@ fun DashboardScreen(navController: NavController) {
     val newsProviders = getNewsSource()
     Scaffold(
         topBar = {
-            TopAppBar {
-                Text(text = "Dashboard")
-            }
+            AppToolbar(title = "Dashboard")
         },
         content = { padding ->
             Box(
@@ -38,7 +36,14 @@ fun DashboardScreen(navController: NavController) {
             ) {
                 LazyVerticalGrid(columns = GridCells.Fixed(3)) {
                     items(newsProviders) { item ->
-                        NewsProviderCard(item)
+                        val selectedIndex = newsProviders.indexOf(item)
+                        NewsProviderCard(item) {
+                            navController.navigate(
+                                Screens.NewsParentScreen.withArgs(
+                                    selectedIndex
+                                )
+                            )
+                        }
                     }
                 }
             }
