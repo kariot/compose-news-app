@@ -5,11 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import dagger.hilt.android.AndroidEntryPoint
 import me.kariot.composenewsapp.navigation.Screens
 import me.kariot.composenewsapp.navigation.SetupNavGraph
 import me.kariot.composenewsapp.presentation.ui.theme.ComposeNewsAppTheme
 import me.kariot.composenewsapp.utils.SharedPref
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     lateinit var navHostController: NavHostController
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import me.kariot.composenewsapp.presentation.screens.dashboard.DashboardScreen
 import me.kariot.composenewsapp.presentation.screens.languageSelection.LanguagePickerScreen
-import me.kariot.composenewsapp.presentation.screens.listNews.NewsParentScreen
+import me.kariot.composenewsapp.presentation.screens.listNews.NewsListScreen
 
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
@@ -33,7 +33,7 @@ fun SetupNavGraph(navController: NavHostController) {
                 type = NavType.IntType
             }),
             content = { entry ->
-                NewsParentScreen(
+                NewsListScreen(
                     entry.arguments?.getInt("selectedIndex") ?: 0,
                     navController = navController
                 )
