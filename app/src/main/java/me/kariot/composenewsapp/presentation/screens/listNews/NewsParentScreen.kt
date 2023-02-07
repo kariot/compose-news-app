@@ -36,8 +36,7 @@ fun NewsListScreen(
         ) {
             NewsTabs(newsSource = localNewsSource, pagerState = pagerState)
             HorizontalPager(count = localNewsSource.count(), state = pagerState) { page ->
-                val newsSource = localNewsSource[page]
-                viewModel.getNews(newsSource)
+                viewModel.getNews(localNewsSource[page])
                 NewsListPager(newsList.value)
             }
         }
