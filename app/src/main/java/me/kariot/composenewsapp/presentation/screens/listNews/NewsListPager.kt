@@ -1,9 +1,9 @@
 package me.kariot.composenewsapp.presentation.screens.listNews
 
 import androidx.compose.runtime.Composable
-import me.kariot.composenewsapp.data.NewsSource
+import me.kariot.composenewsapp.utils.Resource
 
 @Composable
-fun NewsListPager(selectedItem: NewsSource) {
+fun NewsListPager(articles: Resource<List<String>>) {
 
 }

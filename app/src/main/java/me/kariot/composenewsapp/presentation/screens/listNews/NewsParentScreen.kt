@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -19,22 +20,25 @@ import me.kariot.composenewsapp.presentation.screens.listNews.components.NewsTab
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun NewsListScreen(
-    selectedIndex: Int,
-    navController: NavController,
-    viewModel: NewsListViewModel = hiltViewModel()
-    ) {
+    selectedIndex: Int, navController: NavController, viewModel: NewsListViewModel = hiltViewModel()
+) {
     val pagerState = rememberPagerState(selectedIndex)
-    val newsSource = getNewsSource()
+    val localNewsSource = getNewsSource()
     val scope = rememberCoroutineScope()
+
+    val newsList = viewModel.newsList.collectAsState()
+
     Scaffold(topBar = { AppToolbar(title = "Latest News") }) {
         Column(
             modifier = Modifier
                 .padding(it)
                 .fillMaxSize()
         ) {
-            NewsTabs(newsSource = newsSource, pagerState = pagerState)
-            HorizontalPager(count = newsSource.count(), state = pagerState) { page ->
-                NewsListPager(newsSource[page])
+            NewsTabs(newsSource = localNewsSource, pagerState = pagerState)
+            HorizontalPager(count = localNewsSource.count(), state = pagerState) { page ->
+                val newsSource = localNewsSource[page]
+                viewModel.getNews(newsSource)
+                NewsListPager(newsList.value)
             }
         }
     }
