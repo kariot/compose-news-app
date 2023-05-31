@@ -83,3 +83,10 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+/.idea/.name
+/.idea/compiler.xml
+/.idea/git_toolbox_prj.xml
+/gradle/wrapper/gradle-wrapper.jar
+/.idea/kotlinc.xml
+/.idea/misc.xml
+/.idea/inspectionProfiles/Project_Default.xml
