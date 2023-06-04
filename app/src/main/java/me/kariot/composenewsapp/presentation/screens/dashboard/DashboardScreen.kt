@@ -9,6 +9,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import me.kariot.composenewsapp.data.NewsSource
 import me.kariot.composenewsapp.data.source.EnglishDataSources
@@ -24,6 +25,7 @@ import me.kariot.quicknews.api.TamilDataSources
 @Composable
 fun DashboardScreen(navController: NavController) {
     val newsProviders = getNewsSource()
+    val viewModel: DashboardViewModel = hiltViewModel()
     Scaffold(
         topBar = {
             AppToolbar(title = "Dashboard")
@@ -56,18 +58,23 @@ fun getNewsSource(): List<NewsSource> {
         "en" -> {
             EnglishDataSources.englishDataSource
         }
+
         "ml" -> {
             MalayalamDataSources.malayalamDataSource
         }
+
         "tl" -> {
             TamilDataSources.tamilDataSource
         }
+
         "kn" -> {
             KannadaDataSources.kannadaDataSource
         }
+
         "hn" -> {
             HindiDataSources.hindiDataSource
         }
+
         else -> {
             throw java.lang.IllegalStateException("Unknown language")
         }

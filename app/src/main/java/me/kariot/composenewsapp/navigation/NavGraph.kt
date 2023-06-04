@@ -22,7 +22,6 @@ fun SetupNavGraph(navController: NavHostController) {
 
         composable(
             Screens.DashScreen.route,
-
             content = {
                 DashboardScreen(navController)
             }
