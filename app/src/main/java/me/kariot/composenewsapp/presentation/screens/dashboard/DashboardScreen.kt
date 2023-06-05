@@ -25,7 +25,6 @@ import me.kariot.quicknews.api.TamilDataSources
 @Composable
 fun DashboardScreen(navController: NavController) {
     val newsProviders = getNewsSource()
-    val viewModel: DashboardViewModel = hiltViewModel()
     Scaffold(
         topBar = {
             AppToolbar(title = "Dashboard")
