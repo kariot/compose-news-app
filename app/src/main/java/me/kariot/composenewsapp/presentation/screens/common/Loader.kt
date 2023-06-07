@@ -12,7 +12,8 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun Loader() {
     Box(modifier = Modifier.fillMaxSize()) {
-        CircularProgressIndicator(color = Color.Green, modifier = Modifier.align(Alignment.Center))
+        CircularProgressIndicator(color = Color.Green,
+            modifier = Modifier.align(Alignment.Center))
     }
 }
 

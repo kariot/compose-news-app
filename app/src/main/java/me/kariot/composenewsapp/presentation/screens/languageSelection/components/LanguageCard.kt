@@ -14,6 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import me.kariot.composenewsapp.data.models.languageSelection.Languages
 import me.kariot.composenewsapp.presentation.screens.languageSelection.components.LanguageThumbnail
+import me.kariot.composenewsapp.utils.extensions.bounceClick
 
 @Composable
 fun LanguageCard(
@@ -32,6 +33,7 @@ fun LanguageCard(
         elevation = 4.dp,
         modifier = Modifier
             .padding(8.dp)
+            .bounceClick()
             .clickable {
                 onItemClick.invoke(index)
             },

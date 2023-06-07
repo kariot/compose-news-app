@@ -7,6 +7,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -25,12 +27,13 @@ fun NewsItem(article: Article) {
     ) {
         Row(modifier = Modifier.padding(8.dp)) {
             AsyncImage(
+                contentScale= ContentScale.Crop,
                 model = article.image,
                 contentDescription = article.description,
-                modifier = Modifier.fillMaxWidth(0.3f)
+                modifier = Modifier.fillMaxWidth(0.3f).clip(RoundedCornerShape(12.dp))
             )
             Column(
-                modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center
+                modifier = Modifier.fillMaxSize().padding(8.dp),
             ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),

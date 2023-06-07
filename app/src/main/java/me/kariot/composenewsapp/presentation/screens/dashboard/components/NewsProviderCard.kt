@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import me.kariot.composenewsapp.data.NewsSource
 import me.kariot.composenewsapp.data.source.MalayalamDataSources
+import me.kariot.composenewsapp.utils.extensions.bounceClick
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -23,7 +24,7 @@ fun NewsProviderCard(item: NewsSource, onClick: (NewsSource) -> Unit) {
     Card(
         modifier = Modifier
             .padding(6.dp)
-            .heightIn(min = 200.dp),
+            .heightIn(min = 200.dp).bounceClick(),
         shape = RoundedCornerShape(8.dp),
         elevation = 4.dp,
         onClick = { onClick(item) }
