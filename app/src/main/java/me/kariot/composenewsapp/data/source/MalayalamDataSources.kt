@@ -36,7 +36,7 @@ object MalayalamDataSources {
         NewsSource(
             "Mathrubhumi",
             "https://images.mathrubhumi.com/images/mblogo.png",
-            "https://www.mathrubhumi.com/cmlink/mathrubhumi-latestnews-rssfeed-1.1184486"
+            "https://www.mathrubhumi.com/cmlink/rss-feed-1.7275970"
         ),
         NewsSource(
             "Indian Express Malayalam",

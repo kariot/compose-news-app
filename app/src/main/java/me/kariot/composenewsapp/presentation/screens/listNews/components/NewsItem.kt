@@ -1,6 +1,12 @@
 package me.kariot.composenewsapp.presentation.screens.listNews.components
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
@@ -27,13 +33,17 @@ fun NewsItem(article: Article) {
     ) {
         Row(modifier = Modifier.padding(8.dp)) {
             AsyncImage(
-                contentScale= ContentScale.Crop,
+                contentScale = ContentScale.Crop,
                 model = article.image,
                 contentDescription = article.description,
-                modifier = Modifier.fillMaxWidth(0.3f).clip(RoundedCornerShape(12.dp))
+                modifier = Modifier
+                    .fillMaxWidth(0.3f)
+                    .clip(RoundedCornerShape(12.dp))
             )
             Column(
-                modifier = Modifier.fillMaxSize().padding(8.dp),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(8.dp),
             ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
@@ -57,7 +67,7 @@ fun NewsItem(article: Article) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 12.dp),
-                    text = article.pubDate ?: "",
+                    text = article.pubDate?.substringBefore("+") ?: article.pubDate ?: "",
                     color = MaterialTheme.colors.primary,
                     textAlign = TextAlign.End,
 
