@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.appat.reachability.setNetworkListenerContent
 import dagger.hilt.android.AndroidEntryPoint
 import me.kariot.composenewsapp.navigation.Screens
 import me.kariot.composenewsapp.navigation.SetupNavGraph
@@ -15,7 +16,7 @@ class MainActivity : ComponentActivity() {
     lateinit var navHostController: NavHostController
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
+        setNetworkListenerContent {
             ComposeNewsAppTheme {
                 navHostController = rememberNavController()
                 SetupNavGraph(navController = navHostController)

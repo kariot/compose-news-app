@@ -1,5 +1,6 @@
 package me.kariot.composenewsapp.presentation.screens.listNews.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,12 +26,14 @@ import coil.compose.AsyncImage
 import com.prof.rssparser.Article
 
 @Composable
-fun NewsItem(article: Article) {
-    Card(
-        shape = RoundedCornerShape(8.dp), modifier = Modifier
+fun NewsItem(article: Article, onClickItem: (Article) -> Unit = { _ -> }) {
+    Card(shape = RoundedCornerShape(8.dp),
+        modifier = Modifier
             .fillMaxWidth()
             .height(220.dp)
-    ) {
+            .clickable {
+                onClickItem.invoke(article)
+            }) {
         Row(modifier = Modifier.padding(8.dp)) {
             AsyncImage(
                 contentScale = ContentScale.Crop,

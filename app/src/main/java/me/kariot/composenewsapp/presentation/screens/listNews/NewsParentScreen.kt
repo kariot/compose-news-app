@@ -25,9 +25,7 @@ import me.kariot.composenewsapp.utils.Resource
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun NewsListScreen(
-    selectedIndex: Int,
-    navController: NavController,
-    viewModel: NewsListViewModel = hiltViewModel()
+    selectedIndex: Int, navController: NavController, viewModel: NewsListViewModel = hiltViewModel()
 ) {
 
     val localNewsSource = getNewsSource()
@@ -39,8 +37,6 @@ fun NewsListScreen(
             viewModel.getNews(localNewsSource[it])
         }
     }
-    val scope = rememberCoroutineScope()
-
     val newsList = viewModel.newsList.collectAsState()
 
     Scaffold(topBar = { AppToolbar(title = "Latest News") }) {
@@ -63,7 +59,9 @@ fun NewsListScreen(
                     }
 
                     is Resource.Success -> {
-                        NewsListPager(newsList.value.data ?: emptyList())
+                        NewsListPager(newsList.value.data ?: emptyList()) {
+
+                        }
                     }
                 }
 
