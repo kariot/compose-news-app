@@ -7,10 +7,8 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
@@ -25,7 +23,7 @@ import me.kariot.composenewsapp.utils.Resource
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun NewsListScreen(
-    selectedIndex: Int, navController: NavController, viewModel: NewsListViewModel = hiltViewModel()
+    selectedIndex: Int, navController: NavController, viewModel: NewsListViewModel
 ) {
 
     val localNewsSource = getNewsSource()
