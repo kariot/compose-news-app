@@ -13,6 +13,7 @@ import androidx.navigation.NavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
+import me.kariot.composenewsapp.navigation.Screens
 import me.kariot.composenewsapp.presentation.screens.common.AppToolbar
 import me.kariot.composenewsapp.presentation.screens.common.ErrorScreen
 import me.kariot.composenewsapp.presentation.screens.common.Loader
@@ -37,7 +38,7 @@ fun NewsListScreen(
     }
     val newsList = viewModel.newsList.collectAsState()
 
-    Scaffold(topBar = { AppToolbar(title = "Latest News") }) {
+    Scaffold(topBar = { navController.AppToolbar(title = "Latest News") }) {
         Column(
             modifier = Modifier
                 .padding(it)
@@ -57,8 +58,10 @@ fun NewsListScreen(
                     }
 
                     is Resource.Success -> {
-                        NewsListPager(newsList.value.data ?: emptyList()) {
-
+                        NewsListPager(newsList.value.data ?: emptyList()) { article ->
+                            newsList.value.data?.indexOf(article)?.let {
+                                navController.navigate(Screens.NewsDetailsScreen.route + "/$it")
+                            }
                         }
                     }
                 }

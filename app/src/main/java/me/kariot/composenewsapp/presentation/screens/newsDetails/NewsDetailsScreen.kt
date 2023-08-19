@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -24,7 +25,9 @@ import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
+import me.kariot.composenewsapp.presentation.screens.common.AppToolbar
 import me.kariot.composenewsapp.presentation.screens.listNews.NewsListViewModel
+import me.kariot.composenewsapp.presentation.ui.composables.HtmlText
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
@@ -43,22 +46,28 @@ fun NewsDetailsScreen(
         }
     }
     articles?.get(selectedIndex)?.let { article ->
-        Column(
-            modifier = Modifier
-                .verticalScroll(rememberScrollState())
-                .padding(12.dp)
-        ) {
-            AsyncImage(
-                contentScale = ContentScale.Crop,
-                model = article.image,
-                contentDescription = article.description,
+
+        Scaffold(topBar = {
+            navController.AppToolbar(title = "Article")
+        }) {
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(4f / 3)
-            )
-            Spacer(modifier = Modifier.size(8.dp))
-            Text(text = article.title ?: "")
-            Text(text = article.description ?: "")
+                    .verticalScroll(rememberScrollState())
+                    .padding(it)
+            ) {
+                AsyncImage(
+                    contentScale = ContentScale.Crop,
+                    model = article.image,
+                    contentDescription = article.description,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(4f / 3)
+                )
+                Spacer(modifier = Modifier.size(8.dp))
+                Text(text = article.title ?: "")
+                HtmlText(html = article.description ?: "")
+            }
+
         }
 
     }

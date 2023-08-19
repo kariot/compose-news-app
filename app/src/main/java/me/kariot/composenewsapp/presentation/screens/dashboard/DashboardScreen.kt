@@ -27,7 +27,7 @@ fun DashboardScreen(navController: NavController) {
     val newsProviders = getNewsSource()
     Scaffold(
         topBar = {
-            AppToolbar(title = "Dashboard")
+            navController.AppToolbar(title = "Dashboard")
         },
         content = { padding ->
             Box(

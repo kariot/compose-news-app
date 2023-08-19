@@ -1,5 +1,6 @@
 package me.kariot.composenewsapp.domain.repository
 
+import android.util.Log
 import com.prof.rssparser.Article
 import com.prof.rssparser.Parser
 import kotlinx.coroutines.flow.Flow
@@ -16,6 +17,7 @@ class NewsRepositoryImpl @Inject constructor(
         val url = source.newsUrl
         try {
             val channel = parser.getChannel(url)
+            Log.d("<>Result",channel.articles.toString())
             emit(Resource.Success(channel.articles))
         } catch (e: Exception) {
             e.printStackTrace()

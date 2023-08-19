@@ -3,7 +3,7 @@ package me.kariot.composenewsapp.presentation.screens.listNews.components
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -24,23 +24,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.prof.rssparser.Article
+import me.kariot.composenewsapp.presentation.ui.composables.HtmlText
 
 @Composable
 fun NewsItem(article: Article, onClickItem: (Article) -> Unit = { _ -> }) {
-    Card(shape = RoundedCornerShape(8.dp),
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(220.dp)
-            .clickable {
-                onClickItem.invoke(article)
-            }) {
-        Row(modifier = Modifier.padding(8.dp)) {
+    Card(shape = RoundedCornerShape(8.dp), modifier = Modifier
+        .fillMaxWidth()
+        .clickable {
+            onClickItem.invoke(article)
+        }) {
+        Column(modifier = Modifier.padding(8.dp)) {
             AsyncImage(
                 contentScale = ContentScale.Crop,
                 model = article.image,
                 contentDescription = article.description,
                 modifier = Modifier
-                    .fillMaxWidth(0.3f)
+                    .fillMaxWidth()
+                    .aspectRatio(2f)
                     .clip(RoundedCornerShape(12.dp))
             )
             Column(
@@ -58,12 +58,10 @@ fun NewsItem(article: Article, onClickItem: (Article) -> Unit = { _ -> }) {
                     overflow = TextOverflow.Ellipsis
                 )
                 Box(modifier = Modifier.height(8.dp))
-                Text(
+                HtmlText(
                     modifier = Modifier.fillMaxWidth(),
-                    text = article.content ?: "",
-                    color = MaterialTheme.colors.primary,
+                    html = article.content?.substringAfter("<p>")?.substringBefore("</p>") ?: "",
                     maxLines = 3,
-                    overflow = TextOverflow.Ellipsis,
                 )
                 Box(modifier = Modifier.height(8.dp))
                 Text(
