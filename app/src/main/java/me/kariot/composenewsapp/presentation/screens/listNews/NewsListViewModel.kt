@@ -2,7 +2,7 @@ package me.kariot.composenewsapp.presentation.screens.listNews
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.prof.rssparser.Article
+import com.prof18.rssparser.model.RssItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -16,7 +16,7 @@ import javax.inject.Inject
 class NewsListViewModel @Inject constructor(
     private val repository: NewsRepository
 ) : ViewModel() {
-    private val _newsList: MutableStateFlow<Resource<List<Article>>> =
+    private val _newsList: MutableStateFlow<Resource<List<RssItem>>> =
         MutableStateFlow(Resource.Loading())
     val newsList = _newsList.asStateFlow()
 

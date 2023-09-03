@@ -54,6 +54,7 @@ fun NewsDetailsScreen(
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
                     .padding(it)
+                    .padding(horizontal = 12.dp)
             ) {
                 AsyncImage(
                     contentScale = ContentScale.Crop,

@@ -88,6 +88,6 @@ dependencies {
     implementation "com.google.accompanist:accompanist-pager-indicators:0.28.0"
     implementation("in.appat:ReachabilityCompose:0.1.0")
 
-    implementation 'com.prof18.rssparser:rssparser:3.1.5'
+    implementation 'com.prof18.rssparser:rssparser:6.0.0'
 }
 
